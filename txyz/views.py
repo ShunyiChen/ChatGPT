@@ -92,8 +92,9 @@ def get_settings(request):
 @api_view(['GET'])
 def categories(request):
     if request.user.is_authenticated:
-        x = requests.get('https://txyz.ai/api/feed/categories')
-        return JsonResponse({'Output': x, 'Status': SUCCESS})
+        categories = requests.get('https://txyz.ai/api/feed/categories')
+        print(categories)
+        return JsonResponse({'Output': str(categories), 'Status': SUCCESS})
     else:
         return JsonResponse({'Output': 'Unauthorized', 'Status': ERROR})
 
